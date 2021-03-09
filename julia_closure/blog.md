@@ -1,7 +1,7 @@
 # Julia Iterate, Recursion and Closure.
 
 
-In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with `Base.iterate`. Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about closures . 
+In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with [`Base.iterate`](https://docs.julialang.org/en/v1/base/iterators). Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about `closures` . 
 
 Fibonacci sequence is a sequence of numbers such as each number is a result of summing up the previous two numbers.
 
