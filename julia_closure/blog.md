@@ -1,7 +1,7 @@
 # Julia Iterate, Recursion and Closure.
 
 
-In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with [`Base.iterate`](https://docs.julialang.org/en/v1/base/iterators). Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about `closures` . 
+In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with [`Base.iterate`](https://docs.julialang.org/en/v1/base/iterators). Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about [`closures`] (https://docs.julialang.org/en/v1/devdocs/functions/#Closures). 
 
 Fibonacci sequence is a sequence of numbers such as each number is a result of summing up the previous two numbers.
 
@@ -84,7 +84,7 @@ end
 
 # Closures with Julia
 ## 5. Julia Closures
-[Closure](https://docs.julialang.org/en/v1/devdocs/functions/#Closures) is a combination of  functions binded with its surrounding state such as other outer variables or functions. It provides you with an easier and cleaner way to make stateful function without needing to create a struct or class. 
+Closure is a combination of  functions binded with its surrounding state such as other outer variables or functions. It provides you with an easier and cleaner way to make stateful function without needing to create a struct or class. 
 
 Now we'll use closures to build a function `get_next_number` that keeps generating fibonacci sequence.
 Since we need to save the values of `a` & `b` along the way, we'll be declaring them in the outer function `fib_closure` , Then to calculate nth fibonacci, we'll need to loop n times until reaching the nth fibonacci number.
