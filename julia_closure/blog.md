@@ -5,6 +5,8 @@ Fibonacci sequence is a sequence of numbers such as each number is a result of s
 
 > 1, 1, 2, 3, 5, 8, 13, 21, ..., etc
 
+In this tutorial we'll be generating fibonacci sequence in different ways. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with `Base.iterate`. Also we'll be checking recursion and a more efficient version of recursion. Finally we'll talking about closures. 
+
 ## 1. Simple Loop
 The natural way of approaching this problem is to start with `a=0`, `b=1` and keep adding those variables along the way to the target sequence.
 
@@ -19,8 +21,8 @@ end
 ```
 
 ## 2. Julia Iterators
-One of Julia powerful features is the using of multiple-dispatch. This allows any function to have multiple implementations based on the type of passed arguments. So in our case we'll have a [`struct`](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) that holds the info of the current iteration. Struct is simply an object in any other programming language.
-
+One of Julia powerful features is the using of multiple-dispatch. This allows any function to have multiple implementations based on the type of passed arguments. So in our case we'll need have a [`struct`](https://docs.julialang.org/en/v1/manual/types/#Composite-Types) that holds the info of the current iteration and to tell `Base.iterate` that we need to generate a new fibonacci sequence for every iteration. 
+In our case the struct will be holding an integer that refers to the current fibonacci index.
 ```julia
 struct FibStruct
     n::Int 
@@ -81,38 +83,10 @@ end
 
 
 ## 5. Julia Closures
-[Closures](https://docs.julialang.org/en/v1/devdocs/functions/#Closures) is a way of storing functions binded with variables. Now we'll use closures to build a function `get_next_number` that keeps generating fibonacci sequence
+[Closure](https://docs.julialang.org/en/v1/devdocs/functions/#Closures) is a combination of  functions binded with its surrounding state such as other outer variables or functions. It provides you with an easier and cleaner way to make stateful function without needing to create a struct or class. 
 
-```julia
-function fib_closure()
-    a = 0
-    b = 1
-    function get_next_number()
-        a, b = b, a+b
-        return b
-    end
-    return get_next_number
-end
-
-```
-Since we need to save the values of `a` & `b` along the way, we'll be declaring them in the outer function `fib_closure` 
-
-Now when you can call it like that
-
-```julia
-generate = fib_closure()
-
-generate() #1
-generate() #1
-generate() #2
-generate() #3
-.
-.
-.
-generate() #21
-```
-
-Since we need to calculate nth fibonacci, we'll need to loop n times until reaching the nth fibonacci number.
+Now we'll use closures to build a function `get_next_number` that keeps generating fibonacci sequence.
+Since we need to save the values of `a` & `b` along the way, we'll be declaring them in the outer function `fib_closure` , Then to calculate nth fibonacci, we'll need to loop n times until reaching the nth fibonacci number.
 
 ```julia
 function fib_closure(n)
@@ -127,7 +101,7 @@ end
 ```
 
 ## Conclusion
-In this tutorial we've explained ways to measure fibonacci. Some ways are identical to other programming language and other ways are exclusively in Julia. 
+In this tutorial we've explained ways to calculate fibonacci series. Some ways are identical to other programming language and other ways are exclusively exists in Julia. 
 Also we've measured the time of each function using [`BenchmarkTool.jl`](https://github.com/JuliaCI/BenchmarkTools.jl) while calculating the 90s fibonacci number. 
 Note: If you try higher number than 93, you'll have an overflow. You may want to use other datatypes like [UInt64, Int128, UInt128](https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/) or [BigInt](https://docs.julialang.org/en/v1/base/numbers/#Base.GMP.BigInt) 
 
@@ -167,3 +141,5 @@ Note: If you try higher number than 93, you'll have an overflow. You may want to
     end
     # 2.372 μs (82 allocations: 2.11 KiB)
     ```
+
+Finally we can conclude that if we want to calculate long sequences you rather use a way that involves loops such as `fib_loop` or iterate over `FibStruct`. Both ways have the best time and least memory allocation. If your problem really needs usage of recursion, Try whether to optimize your code to decrease the function calls or use `Closures`.
