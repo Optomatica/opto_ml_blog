@@ -120,7 +120,10 @@ Note: If you try higher number than 93, you'll have an overflow. You may want to
         while next !== nothing
             (i, state) = next
             next = iterate(fib_struct, state)
-        end        
+        end
+        # The above code is the same like this
+        # for i in FibStruct(90)
+        # end        
     end
     # 1.812 ns (0 allocations: 0 bytes)
     ```
