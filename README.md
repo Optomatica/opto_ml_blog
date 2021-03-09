@@ -1,2 +1,2 @@
-# Optomatica First Machine Learning blog
-This repository will be our Jupyter Notebooks warehouse to be linked with the blog. 
+# Optomatica Machine Learning Blog
+This repository has Jupyter Notebooks related to different Machine Learning applications provided by [`Optomatica`](https://optomatica.com/) company to share knowledge and expertise.
