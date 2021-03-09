@@ -85,3 +85,14 @@ end
 @btime begin
     collect(fib_closure(90))[end]    
 end
+
+
+using BenchmarkTools
+@btime begin 
+    fib_struct = FibStruct(90)
+    next = iterate(fib_struct)
+    while next !== nothing
+        (i, state) = next
+        next = iterate(fib_struct, state)
+    end        
+end

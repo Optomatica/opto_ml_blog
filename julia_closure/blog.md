@@ -115,7 +115,11 @@ Note: If you try higher number than 93, you'll have an overflow. You may want to
 - FibStruct(90)
     ```julia
     @btime begin 
-        for i in FibStruct(90)
+        fib_struct = FibStruct(90)
+        next = iterate(fib_struct)
+        while next !== nothing
+            (i, state) = next
+            next = iterate(fib_struct, state)
         end        
     end
     # 1.812 ns (0 allocations: 0 bytes)
