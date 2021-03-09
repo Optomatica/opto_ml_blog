@@ -1,5 +1,5 @@
 # Julia Iterate, Recursion and Closure.
-## Fibonacci Example
+
 
 In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with `Base.iterate`. Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about closures . 
 
@@ -101,7 +101,7 @@ function fib_closure(n)
 end
 ```
 
-## Conclusion
+# Conclusions
 In this tutorial we've explained Julia's iterate ,recurusion and closures via a fibonacci series example. As a comparison, we can measure the time of each function using [`BenchmarkTool.jl`](https://github.com/JuliaCI/BenchmarkTools.jl) while calculating the 90s fibonacci number. 
 Note: If you try higher number than 93, you'll have an overflow. You may want to use other datatypes like [UInt64, Int128, UInt128](https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/) or [BigInt](https://docs.julialang.org/en/v1/base/numbers/#Base.GMP.BigInt) 
 
