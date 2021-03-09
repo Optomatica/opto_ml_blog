@@ -102,17 +102,20 @@ end
 ```
 
 # Conclusions
-In this tutorial we've explained Julia's iterate ,recurusion and closures via a fibonacci series example. As a comparison, we can measure the time of each function using [`BenchmarkTool.jl`](https://github.com/JuliaCI/BenchmarkTools.jl) while calculating the 90s fibonacci number. 
-Note: If you try higher number than 93, you'll have an overflow. You may want to use other datatypes like [UInt64, Int128, UInt128](https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/) or [BigInt](https://docs.julialang.org/en/v1/base/numbers/#Base.GMP.BigInt) 
+In this post, we've explained Julia's iterate ,recurusion and closures via a fibonacci series example. As a comparison, we can measure the time of each function and the allocated memory using [`BenchmarkTool.jl`](https://github.com/JuliaCI/BenchmarkTools.jl) while calculating the 90s fibonacci number. 
+Note: If you try higher number than 93, you'll have an overflow. You may want to use other datatypes like [UInt64, Int128, UInt128](https://docs.julialang.org/en/v1/manual/integers-and-floating-point-numbers/) or [BigInt](https://docs.julialang.org/en/v1/base/numbers/#Base.GMP.BigInt) .
 
-- fib_loop(90) 
+Using loops has less computation time and no memory was allocated. On the other side, closure is better than the recursion with respect to both of the computation time and the allocated memory
+
+
+- Using loops
     ```julia
-    @btime begin
-        fib_loop(90)
+    @btime begin 
+        fib_loop(90) 
     end
     # 2.029 ns (0 allocations: 0 bytes)
     ```
-- FibStruct(90)
+
     ```julia
     @btime begin 
         fib_struct = FibStruct(90)
@@ -127,21 +130,21 @@ Note: If you try higher number than 93, you'll have an overflow. You may want to
     end
     # 1.812 ns (0 allocations: 0 bytes)
     ```
-- fib_recursion(90)
+- Using recursion
     ```julia
     @btime begin
         fib_recursion(90)
     end
     # More than 20 mins
     ```
-- fib_recursion_improved(90)
+
     ```julia
     @btime begin
         fib_recursion_improved(90)
     end
     # 3.481 μs (10 allocations: 6.58 KiB)
     ```
-- fib_closure(90)
+- Using closures
     ```julia
     @btime begin
         collect(fib_closure(90))[end]    
@@ -149,4 +152,3 @@ Note: If you try higher number than 93, you'll have an overflow. You may want to
     # 2.372 μs (82 allocations: 2.11 KiB)
     ```
 
-Finally we can conclude that if we want to calculate long sequences you rather use a way that involves loops such as `fib_loop` or iterate over `FibStruct`. Both ways have the best time and least memory allocation. If your problem really needs usage of recursion, Try whether to optimize your code to decrease the function calls or use `Closures`.
