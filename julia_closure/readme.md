@@ -1,5 +1,5 @@
 # Julia Iterate, Recursion and Closure.
-
+![](cover.png)
 
 In this post, we'll go through different Julia capabilities like Iterate ,recursion and closures. We will show code snippets of how to use these features in Julia using a simple example of fibonacci sequence. We'll start with a simple `for loop` and then see how we can use julia multiple dispatch with [`Base.iterate`](https://docs.julialang.org/en/v1/manual/interfaces/#man-interface-iteration) . Also we'll show the simple recursive method and an optimized version of recursion. Finally we'll talk about [`closures`](https://docs.julialang.org/en/v1/devdocs/functions/#Closures). Full code can be found on [`Github`](https://github.com/ms10596/opto_ml_blog/blob/master/julia_closure/main.jl).
 
