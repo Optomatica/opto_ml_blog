@@ -69,5 +69,5 @@ Modifying the parameters is easier and more interactive with Pluto, so it made e
 This is an example of the code snippet used to generate sliders that control the 5 parameters used in the last example:
 ![Pluto sliders](./images/image12.png)
 
-This is just a quick and simple introduction to what can be done with the Distributions package. For other features and different distributions you can check the package documentation [here](https://juliastats.org/Distributions.jl/stable/). You can also find the full notebook here.
+This is just a quick and simple introduction to what can be done with the Distributions package. For other features and different distributions you can check the package documentation [here](https://juliastats.org/Distributions.jl/stable/). You can also find the full notebook [here](https://github.com/Optomatica/opto_ml_blog/blob/17f8a3fec9c201f885eee5aa6e4e4fbf1016b7d0/Distributions_in_Julia_files/Distributions_in_Julia.jl).
 
