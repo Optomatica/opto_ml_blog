@@ -51,6 +51,8 @@ begin
 	filterMinTempNA = input_data["MinTemp"].!="NA"
 	min_temp_data = parse.(Float64,input_data["MinTemp"][filterMinTempNA])
 	histogram(min_temp_data,label = "MinTemp")
+	xlabel!("Temperature in °C")
+	ylabel!("Number of occurences")
 end
 
 # ╔═╡ ebb699fc-7c21-11eb-1c74-4560746a4d54
@@ -126,6 +128,8 @@ begin
 	filterWindSpeed9amNA = input_data["WindSpeed9am"].!="NA"
 	windSpeed9am_data = parse.(Float64,input_data["WindSpeed9am"][filterWindSpeed9amNA])
 	histogram(windSpeed9am_data,normalize = true,label = "WindSpeed9am")
+	xlabel!("Wind speed in Kmph")
+	ylabel!("Probability")
 end
 
 # ╔═╡ f117cc08-7ce5-11eb-1138-63aebf6c5b74
@@ -139,6 +143,8 @@ begin
 	fitDiscreteDistribution = fit_mle(Poisson,Int.(windSpeed9am_data))
 	histogram(windSpeed9am_data,normalize = true,label = "windSpeed9am")
 	plot!([0:0.1:120],[pdf(fitDiscreteDistribution,i) for i in 0:0.1:120],label = "fitted pdf")
+	xlabel!("Wind speed in Kmph")
+	ylabel!("Probability")
 end
 
 # ╔═╡ d7ce6a56-80b5-11eb-36ad-d1f6ec6ae7c2
@@ -157,7 +163,11 @@ probs(windSpeedDistribution)
 md"We now have a probability for each unique value of windspeeds. We can also use functions that are normally available for other distributions, such as the cdf:"
 
 # ╔═╡ d85cd804-7f31-11eb-03e2-c92e76f6080d
-plot([cdf(windSpeedDistribution,i) for i in 0:100],label = "Wind speed cumulative probability")
+begin
+	plot([cdf(windSpeedDistribution,i) for i in 0:100],label = "Wind speed cumulative probability")
+	xlabel!("Wind speed in Kmph")
+	ylabel!("Cumulative Probability")
+end
 
 # ╔═╡ 9f850a0c-7f44-11eb-0de0-017c3242b944
 md"Let's try to model one more variable, the humidity:"
@@ -167,6 +177,8 @@ begin
 	filterHumidity9amNA = input_data["Humidity9am"].!="NA"
 	humidity9am_data = parse.(Float64,input_data["Humidity9am"][filterHumidity9amNA])
 	histogram(humidity9am_data,normalize = true,label = "Humidity9am",legend = :topleft)
+	xlabel!("Humidity")
+	ylabel!("Probability")
 end
 
 # ╔═╡ 9f391d1a-7f47-11eb-296d-39314ae9782c
@@ -190,10 +202,10 @@ humidityDistribution = MixtureModel([
 
 # ╔═╡ f130b5d8-7f56-11eb-0080-59aac056a53c
 begin
-	begin
-		histogram(humidity9am_data,normalize = true,label = "Humidity9am")
-		plot!([0:0.1:100],[pdf(humidityDistribution,i) for i in 0:0.1:100],legend = :topleft,label = "Humidity9am pdf")	
-	end
+	histogram(humidity9am_data,normalize = true,label = "Humidity9am")
+	plot!([0:0.1:100],[pdf(humidityDistribution,i) for i in 0:0.1:100],legend = :topleft,label = "Humidity9am pdf")	
+	xlabel!("Humidity")
+	ylabel!("Probability")
 end
 
 # ╔═╡ 759d85ee-7f5c-11eb-2cac-8d3e4c1cf7c5
